@@ -18,4 +18,4 @@ for i in DOTA["features"]:
 
     break
 
-map.save('D:/Нова папка/Map_1.html')
+map.save('Map_1.html')
