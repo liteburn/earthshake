@@ -17,7 +17,7 @@
     
     <meta name="viewport" content="width=device-width,
         initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <style>#map_990cf5a9cf564a959fac6e8770318197 {
+    <style>#map_eabccac328584807909fbafc061e9b72 {
         position: relative;
         width: 100.0%;
         height: 100.0%;
@@ -28,7 +28,7 @@
 </head>
 <body>    
     
-    <div class="folium-map" id="map_990cf5a9cf564a959fac6e8770318197" ></div>
+    <div class="folium-map" id="map_eabccac328584807909fbafc061e9b72" ></div>
 </body>
 <script>    
     
@@ -36,8 +36,8 @@
         var bounds = null;
     
 
-    var map_990cf5a9cf564a959fac6e8770318197 = L.map(
-        'map_990cf5a9cf564a959fac6e8770318197', {
+    var map_eabccac328584807909fbafc061e9b72 = L.map(
+        'map_eabccac328584807909fbafc061e9b72', {
         center: [0, 0],
         zoom: 1,
         maxBounds: bounds,
@@ -49,8 +49,8 @@
 
 
     
-    var tile_layer_c66c6d652db541d88df0f25f53a562f8 = L.tileLayer(
-        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    var tile_layer_673fc11293db4b4a81e8840dae409a6a = L.tileLayer(
+        'https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg',
         {
         "attribution": null,
         "detectRetina": false,
@@ -61,42 +61,5 @@
         "opacity": 1,
         "subdomains": "abc",
         "tms": false
-}).addTo(map_990cf5a9cf564a959fac6e8770318197);
-    
-            var circle_marker_26430652760f4a20b74f1861ec7710ac = L.circleMarker(
-                [-180, 180],
-                {
-  "bubblingMouseEvents": true,
-  "color": "brown",
-  "dashArray": null,
-  "dashOffset": null,
-  "fill": true,
-  "fillColor": "red",
-  "fillOpacity": 0.3,
-  "fillRule": "evenodd",
-  "lineCap": "round",
-  "lineJoin": "round",
-  "opacity": 1.0,
-  "radius": 20,
-  "stroke": true,
-  "weight": 3
-}
-                )
-                .addTo(map_990cf5a9cf564a959fac6e8770318197);
-            
-    
-            var popup_2cb1a19d4e5347098fb9c0593f77fd49 = L.popup({maxWidth: '100%'
-            
-            });
-
-            
-                var html_f8cefb8789f64aefbea4408e524b642f = $(`<div id="html_f8cefb8789f64aefbea4408e524b642f" style="width: 100.0%; height: 100.0%;">Test</div>`)[0];
-                popup_2cb1a19d4e5347098fb9c0593f77fd49.setContent(html_f8cefb8789f64aefbea4408e524b642f);
-            
-
-            circle_marker_26430652760f4a20b74f1861ec7710ac.bindPopup(popup_2cb1a19d4e5347098fb9c0593f77fd49)
-            ;
-
-            
-        
+}).addTo(map_eabccac328584807909fbafc061e9b72);
 </script>

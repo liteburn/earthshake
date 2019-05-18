@@ -4,7 +4,7 @@ import os
 app = Flask(__name__)
 wsgi_app = app.wsgi_app
 
-from routes import *
+from modules.routes import *
 
 if __name__ == '__main__':
     HOST = os.environ.get('SERVER_HOST', "localhost")
@@ -12,4 +12,5 @@ if __name__ == '__main__':
         PORT = int(os.environ.get('SERVER_PORT', '5555'))
     except ValueError:
         PORT = 5000
-    app.run(HOST, PORT)
+    while True:
+        app.run(HOST, PORT)

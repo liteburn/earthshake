@@ -1,6 +1,6 @@
 <html>
       <head>
-          <title>Hello, world</title>
+          <title>Earthquakes</title>
           <STYLE type="text/css">
                 body{
           background: white url("https://news.nationalgeographic.com/content/dam/news/2017/08/book-talk-quakeland/2-booktalk-quakeland.ngsversion.1503721837365.adapt.1900.1.jpg") fixed;
@@ -9,14 +9,39 @@
                 .center {
                   position: absolute;
                   left: 0;
-                  top: 15%;
+                  top: 20%;
                   width: 100%;
                   text-align: center;
                   font-size: 25px;
                 }
+              .center1 {
+                  position: absolute;
+                  left: 0;
+                  top: 25%;
+                  width: 100%;
+                  text-align: center;
+                  font-size: 25px;
+                }
+              .center2 {
+                  position: absolute;
+                  left: 0;
+                  top: 15%;
+                  width: 100%;
+                  text-align: center;
+                  font-size: 30px;
+                }
           </STYLE>
       </head>
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
       <body>
-        <a href='/create' class='center'> Earthquakes by date </a>
+        <nav class="w3-bar w3-black">
+          <a href="/" class="w3-bar-item w3-button">Home</a>
+          <a href="/map/date" class="w3-bar-item w3-button">MapByDate</a>
+          <a href="/text/date" class="w3-bar-item w3-button">InfoByDate</a>
+          <a href="/about" class="w3-bar-item w3-button">About</a>
+        </nav>
+        <a href='/map/date' class='center'> Earthquakes by date in map format</a>
+        <a href='/text/date' class='center1'> Earthquakes by date in text format </a>
+        <a href='/prediction' class='center2'> Map of earthquake predictions </a>
       </body>
   </html>

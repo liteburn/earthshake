@@ -9,7 +9,7 @@ earthquake_API = urllib.request.urlopen("https://earthquake.usgs.gov/fdsnws/even
 earthquake_API = earthquake_API.read().decode('utf-8')
 earthquake = json.loads(earthquake_API)
 for i in earthquake["features"]:
-    map.add_child(CircleMarker(location=[i["geometry"]["coordinates"][1], i["geometry"]["coordinates"][0]],
+    map.add_child(CircleMarker(location=[-180, 180],
                                               popup="Test",
                                               color = "brown",
                                               fill_opacity = 0.3,
