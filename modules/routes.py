@@ -7,11 +7,17 @@ DATE = 0
 
 @app.route("/")
 def hello():
+    """
+    Beginning page.
+    """
     return render_template('beggining.html')
 
 
 @app.route("/map/date", methods=['GET', 'POST'])
 def create():
+    """
+    Getting info from user and go to get_map
+    """
     if request.method == 'GET':
         return render_template('get_year.html')
     elif request.method == 'POST':
@@ -37,6 +43,9 @@ def get_map(date):
 
 @app.route("/text/date", methods=['GET', 'POST'])
 def create1():
+    """
+    Getting info from user and going to get_text.
+    """
     if request.method == 'GET':
         return render_template('get_year.html')
     elif request.method == 'POST':
@@ -47,6 +56,12 @@ def create1():
 
 @app.route('/text/<date>', methods=['GET', 'POST'])
 def get_text(date):
+    """
+    Renders a text info
+
+    :param date: date of earthquake
+    :return: renders an info file
+    """
     text_name = checker(date, text_true=True)
     try:
         render_template(text_name)
@@ -56,6 +71,9 @@ def get_text(date):
 
 @app.route('/prediction', methods=['GET', 'POST'])
 def get_prediction():
+    """
+    Predicts earthquakes for future
+    """
     global DATE
     if DATE != datetime.datetime.now().date():
         Earthquakes(1991).get_prediction()
@@ -64,9 +82,20 @@ def get_prediction():
 
 @app.route('/about')
 def about():
+    """
+    renders info About project
+    """
     return render_template('about.html')
 
 def checker(date, map_true=False, text_true=False):
+    """
+    checks if user input is valid and creates a file name.
+
+    :param date: date of earthquakes
+    :param map_true: True if creating map
+    :param text_true: True if creating text file
+    :return: str(name of file)
+    """
     if request.method == 'GET' or request.method == 'POST':
         date = date.split('.')
         try:
