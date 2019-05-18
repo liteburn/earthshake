@@ -28,4 +28,4 @@
 *InfoByDate-створює сторінку з інформацією про землетруси по заданій юзером в полі даті(дата обмежена з 1990 по зарішній день)
 *About-про цей сайт
 *Home-початкова сторінка
-Site - http://liteburn.pythonanywhere.com/
+## Site - http://liteburn.pythonanywhere.com/
