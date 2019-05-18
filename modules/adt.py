@@ -29,7 +29,8 @@ class Earthquakes:
     def __init__(self, date):
         """
         Initialisation of different parameters
-        date - date of earthquake
+
+        :param date: earthquakes date
         """
         self.chance = {}
         self.places = {}
@@ -50,12 +51,10 @@ class Earthquakes:
 
         (changes the class parameters)
         """
-
         helping = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=" + str(
             date[0]) + "-" + str(date[1]) + "-" + str(date[2]) + "&endtime=" + str(int(date[0] + 1)) + "-" + \
                   str(date[1]) + "-" + str(date[2])
 
-        print(helping)
         earthquake_API = urllib.request.urlopen(helping)
         earthquake_API = earthquake_API.read().decode('utf-8')
         earthquakes = json.loads(earthquake_API)
@@ -89,7 +88,6 @@ class Earthquakes:
 
         map1 = Map(tiles="Stamen Terrain")
         for i in self.locations:
-
             if self.place_damaged[i[0], i[1]] and self.place_damaged[i[0], i[1]] > 0.5:
 
                 if self.place_damaged[i[0], i[1]] > 5\
@@ -128,6 +126,10 @@ class Earthquakes:
         map1.save(map_name)
 
     def run(self):
+        """
+        Change some parameters in init and creates a map of date.
+        """
+        self.date = list(map(int, self.date.split('.')))
         if len(self.date) == 3:
             self.get_earthquakes(self.date)
         elif len(self.date) == 2:
@@ -158,11 +160,11 @@ class Earthquakes:
         Logical assumption about nearest earthquakes based on last month - 2 month information.
         """
 
-
         now = datetime.datetime.now()
         now = list(map(int, str(now.date()).split('-')))
         now.reverse()
         days = 0
+
         if now[-2] in [2, 4, 6, 8, 9, 11]:
             for day in range(now[-3], 31):
                 days += 1
@@ -183,6 +185,7 @@ class Earthquakes:
             days += 1
             self.get_earthquakes_for_text([day, int(now[-2]), int(now[-1])])
         map1 = Map()
+
         for place in self.places:
             if place in self.place_damaged:
                 if self.place_damaged[place] - self.place_min_damage[place\
@@ -193,8 +196,10 @@ class Earthquakes:
                 self.chance[place] = len(self.places[place]) / days
                 if self.chance[place] > 0.1:
                     if self.place_damaged[place] > 0.5:
+                        if self.chance[place] * 100 > 100:
+                            self.chance[place] = 0.99
                         to_write = """"With chance {}% there would be earthquake in {} with probable power cl\
-ose to {}""".format(str(self.chance[place])[0:3], place,  self.place_damaged[place])
+ose to {}""".format(str(self.chance[place]*100)[0:5], place,  str(self.place_damaged[place])[0:5])
                         if self.chance[place] > 0.8:
                             chances = 'darkred'
                         elif self.chance[place] > 0.6:
@@ -205,7 +210,7 @@ ose to {}""".format(str(self.chance[place])[0:3], place,  self.place_damaged[pla
                             chances = 'yellow'
                         a = self.places[place][0].coordinates
                         map1.add_child(Circle(
-                            location=[a[0], a[1]],
+                            location=[a[1], a[0]],
                             popup=to_write,
                             radius=10000,
                             color=chances,
@@ -216,6 +221,7 @@ ose to {}""".format(str(self.chance[place])[0:3], place,  self.place_damaged[pla
     def get_earthquakes_for_text(self, date):
         """
         Change some init parameters forwarding text info to be written on users screen
+
         :param date: Date of earthquakes
         """
         helping = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=" + str(
@@ -233,7 +239,6 @@ ose to {}""".format(str(self.chance[place])[0:3], place,  self.place_damaged[pla
                 else:
                     self.places[earth.place] = [earth]
 
-        reason = None
         for place in self.places:
             no_reason = True
             damage = 0
@@ -258,7 +263,6 @@ ose to {}""".format(str(self.chance[place])[0:3], place,  self.place_damaged[pla
     def run_text(self):
         """
         Text version of info about earthquakes.
-        :return:
         """
 
         self.date = str(self.date)
